@@ -60,7 +60,7 @@ export default function SignInSide() {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Admin Sign in
+            Faculty Sign in
           </Typography>
           <form className={classes.form} noValidate>
             <TextField
@@ -96,7 +96,7 @@ export default function SignInSide() {
               color="primary"
               
             >
-            <Link to = 'faculty-dashboard'>Sign In</Link>
+            <Link style={{ color: '#FFF', textDecoration:'none'}} to = 'faculty-dashboard'>Sign In</Link>
               
             </Button>
             <Grid container>

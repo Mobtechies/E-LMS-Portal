@@ -27,7 +27,7 @@ export const mainListItems = (
       <ListItemIcon>
         <PeopleIcon />
       </ListItemIcon>
-      <ListItemText primary="Students" />
+      <ListItemText primary="Courses" />
     </ListItem>
     <ListItem button>
       <ListItemIcon>
@@ -39,7 +39,7 @@ export const mainListItems = (
       <ListItemIcon>
         <LayersIcon />
       </ListItemIcon>
-      <ListItemText primary="Integrations" />
+      <ListItemText primary="Profile" />
     </ListItem>
   </div>
 );

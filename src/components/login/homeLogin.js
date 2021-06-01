@@ -71,9 +71,9 @@ export default function SignInSide() {
               fullWidth
               variant="contained"
               color="primary"
-              className={classes.submit}
+              className={classes.submit}              
               >
-            <Link to= '/admin-login'>Admin</Link>
+            <Link style={{ color: '#FFF', textDecoration:'none'}} to= '/adminlogin'>Admin</Link>
              </Button> 
              <Button
               type="submit"
@@ -82,7 +82,7 @@ export default function SignInSide() {
               color="primary"
               className={classes.submit}
             >
-              <Link to= '/student-login'>Student</Link>
+              <Link style={{ color: '#FFF', textDecoration:'none'}} to= '/student-login'>Student</Link>
             </Button>
 
 
@@ -93,7 +93,7 @@ export default function SignInSide() {
               color="primary"
               className={classes.submit}
             >
-            <Link to= '/faculty-login'>Faculty</Link>
+            <Link style={{ color: '#FFF', textDecoration:'none'}} to= '/faculty-login'>Faculty</Link>
               
             </Button>
             <Grid container>

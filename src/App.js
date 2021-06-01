@@ -18,25 +18,26 @@ import { AuthProvider } from './context/AuthContext';
 
 
 const App = () => {
-return (<div>
+return (<div >
   <Switch>
-  <Route path = '/abc' component = {BasicForm}/>
-  {/* <Route exact path = '/' component = {HomeLogin}/> */}
   <AuthProvider>
-
-  <Container className="d-flex align-items-center justify-content-center"
-  style= {{ minHeight: "100vh" }}
-  >
-  <div className="w-100" style={{ maxWidth: '400px'}}><Route exact path = '/' component = {SignUp}/> </div>
-  </Container>
-  </AuthProvider>
-  <Route path = '/admin-login' component = {AdminLogin}/>
+  <Route path = '/abc' component = {BasicForm}/>
+  <Route exact path = '/' component = {HomeLogin}/>
+  <Route path = '/adminlogin' component = {AdminLogin}/>
   <Route path = '/student-login' component = {StudentLogin}/>
   <Route path = '/faculty-login' component = {FacultyLogin}/>
   <Route path = '/dashboard' component = {AdminDashboard}/>
   <Route path = '/student-dashboard' component = {StudentDashboard}/>
   <Route path = '/faculty-dashboard' component = {FacultyDashboard}>
   </Route>
+  <Container className="d-flex align-items-center justify-content-center"
+  style= {{ minHeight: "100vh" }}
+  >
+  <div className="w-100" style={{ maxWidth: '400px'}}> 
+  <Route path = '/signup' component = {SignUp}/> 
+  </div>
+  </Container>
+  </AuthProvider>
   </Switch>
 </div>)
 };

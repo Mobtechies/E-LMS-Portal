@@ -106,7 +106,7 @@ export default function SignInSide() {
               color="primary"
               
             >
-            <Link to ="student-dashboard">Sign In</Link>
+            <Link style={{ color: '#FFF', textDecoration:'none'}} to ="student-dashboard">Sign In</Link>
               
             </Button>
             <Grid container>

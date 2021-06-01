@@ -7,6 +7,7 @@ import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import PeopleIcon from '@material-ui/icons/People';
 import BarChartIcon from '@material-ui/icons/BarChart';
 import LayersIcon from '@material-ui/icons/Layers';
+import { Link } from 'react-router-dom';
 
 
 export const mainListItems = (
@@ -39,7 +40,7 @@ export const mainListItems = (
       <ListItemIcon>
         <LayersIcon />
       </ListItemIcon>
-      <ListItemText primary="Integrations" />
+      <Link style={{ color: 'black', textDecoration:'none' }} to= '/signup'>Integrations</Link>
     </ListItem>
   </div>
 );
