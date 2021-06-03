@@ -1,7 +1,7 @@
 import React from 'react';
 import {Switch, Route} from 'react-router-dom';
 import { Container } from 'react-bootstrap';
-import BasicForm from './components/login/basicForm';
+import Report from './components/login/basicForm';
 // import SignInSide from './components/login/signInSide';
 import HomeLogin from './components/login/homeLogin';
 import AdminLogin from './components/login/adminLogin';
@@ -12,7 +12,6 @@ import StudentDashboard from './components/student dashboard/dashboard';
 import FacultyDashboard from './components/faculty dashboard/dashboard';
 import SignUp from './components/login/signUp';
 import { AuthProvider } from './context/AuthContext';
- 
 
 
 
@@ -21,7 +20,7 @@ const App = () => {
 return (<div >
   <Switch>
   <AuthProvider>
-  <Route path = '/abc' component = {BasicForm}/>
+  <Route path = '/report' component = {Report}/>
   <Route exact path = '/' component = {HomeLogin}/>
   <Route path = '/adminlogin' component = {AdminLogin}/>
   <Route path = '/student-login' component = {StudentLogin}/>

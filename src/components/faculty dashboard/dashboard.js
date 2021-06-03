@@ -128,7 +128,7 @@ export default function Dashboard() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
+          <Typography component="h1" variant="h6" color="initial" noWrap className={classes.title}>
             Faculty Dashboard
           </Typography>
           <IconButton color="inherit">
