@@ -19,7 +19,7 @@ import { AuthProvider } from './context/AuthContext';
 const App = () => {
 return (<div >
   <Switch>
-  <AuthProvider>
+  
   <Route path = '/report' component = {Report}/>
   <Route exact path = '/' component = {HomeLogin}/>
   <Route path = '/adminlogin' component = {AdminLogin}/>
@@ -29,6 +29,7 @@ return (<div >
   <Route path = '/student-dashboard' component = {StudentDashboard}/>
   <Route path = '/faculty-dashboard' component = {FacultyDashboard}>
   </Route>
+  <AuthProvider>
   <Container className="d-flex align-items-center justify-content-center"
   style= {{ minHeight: "100vh" }}
   >
