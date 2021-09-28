@@ -8,6 +8,8 @@ import PeopleIcon from '@material-ui/icons/People';
 import BarChartIcon from '@material-ui/icons/BarChart';
 import LayersIcon from '@material-ui/icons/Layers';
 import { Link } from 'react-router-dom';
+import { Dropdown } from 'react-bootstrap'
+
 
 
 
@@ -29,7 +31,21 @@ export const mainListItems = (
       <ListItemIcon>
         <PeopleIcon />
       </ListItemIcon>
-      <ListItemText primary="Courses" />
+      <Dropdown>
+  <Dropdown.Toggle variant="white" id="dropdown-basic">
+  <Link style={{ color: 'black', textDecoration:'none' }} >Courses</Link>
+
+
+  </Dropdown.Toggle>
+  <Dropdown.Menu>
+    <Dropdown.Item href="#/action-1">Registered Courses</Dropdown.Item>
+    <Dropdown.Item href="#/action-2">Register for Classes</Dropdown.Item>
+    <Dropdown.Item href="#/action-3">Drop Classes</Dropdown.Item>
+    <Dropdown.Item href="#/action-3">Assignments</Dropdown.Item>
+    <Dropdown.Item href="#/action-3">Transcript</Dropdown.Item>
+
+  </Dropdown.Menu>
+</Dropdown>
     </ListItem>
     <ListItem button>
       <ListItemIcon>
