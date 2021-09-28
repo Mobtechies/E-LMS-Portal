@@ -12,6 +12,7 @@ import StudentDashboard from './components/student dashboard/dashboard';
 import FacultyDashboard from './components/faculty dashboard/dashboard';
 import SignUp from './components/login/signUp';
 import { AuthProvider } from './context/AuthContext';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 
 
@@ -23,10 +24,11 @@ return (<div >
   <Route path = '/report' component = {Report}/>
   <Route exact path = '/' component = {HomeLogin}/>
   <Route path = '/adminlogin' component = {AdminLogin}/>
-  <Route path = '/student-login' component = {StudentLogin}/>
   <Route path = '/faculty-login' component = {FacultyLogin}/>
   <Route path = '/dashboard' component = {AdminDashboard}/>
   <Route path = '/student-dashboard' component = {StudentDashboard}/>
+
+  {/* <Route path = '/student-dashboard' component = {StudentDashboard}/> */}
   <Route path = '/faculty-dashboard' component = {FacultyDashboard}>
   </Route>
   <AuthProvider>
@@ -37,6 +39,8 @@ return (<div >
   <Route path = '/signup' component = {SignUp}/> 
   </div>
   </Container>
+  <Route exact path = '/student-login' component = {StudentLogin}/>
+
   </AuthProvider>
   </Switch>
 </div>)
