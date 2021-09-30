@@ -57,7 +57,7 @@ export default function SignInSide() {
   const emailRef = useRef()
   const passwordRef = useRef()
   const classes = useStyles();
-  const { login } = useAuth()
+  const { login, currentUser } = useAuth()
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
   const history = useHistory()
@@ -68,6 +68,7 @@ export default function SignInSide() {
           setError('')
           setLoading(true)
           await login(emailRef.current.value, passwordRef.current.value)
+          console.log("LOGGED IN USER" +currentUser.email)
           history.push('/student-dashboard')
       } catch{
           setError('Failed to sign in')

@@ -6,8 +6,9 @@ export default function SignUp() {
     const emailRef = useRef()
     const passwordRef = useRef()
     const passwordConfirmRef = useRef()
-    const { signUp } = useAuth()
+    const { signUp, currentUser } = useAuth()
     const [error, setError] = useState('')
+    const [user, setUser] = useState('')
     const [loading, setLoading] = useState(false)
 
     async function handleSubmit(e){
@@ -19,6 +20,8 @@ export default function SignUp() {
             setError('')
             setLoading(true)
             await signUp(emailRef.current.value, passwordRef.current.value)
+            setUser(currentUser.email)
+            console.log("User Is "+currentUser.email)
         } catch{
             setError('Failed to create an account')
         }
@@ -31,6 +34,7 @@ export default function SignUp() {
           <Card>
               <Card.Body>
                   <h2 className="text-center mb-4">Student Sign Up</h2>
+                  
                   {error && <Alert variant="danger">{error}</Alert>}
                   <Form onSubmit={handleSubmit}>
                       <Form.Group id="email">

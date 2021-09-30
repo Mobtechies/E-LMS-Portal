@@ -9,6 +9,8 @@ import BarChartIcon from '@material-ui/icons/BarChart';
 import LayersIcon from '@material-ui/icons/Layers';
 import { Link } from 'react-router-dom';
 import { Dropdown } from 'react-bootstrap'
+import { useAuth } from '../../context/AuthContext';
+
 
 
 
@@ -58,6 +60,12 @@ export const mainListItems = (
         <LayersIcon />
       </ListItemIcon>
       <Link style={{ color: 'black', textDecoration:'none' }} to= '/report'>Reports</Link>
+      
     </ListItem>
+
+    <>
+ 
+    </>
+    
   </div>
 );

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -16,10 +16,18 @@ import Paper from '@material-ui/core/Paper';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import BarChartIcon from '@material-ui/icons/BarChart';
+
+import { useAuth } from '../../context/AuthContext'
+
 import { mainListItems } from './listItems';
 import Chart from './charts';
 import Deposits from './deposits';
 import Orders from './orders';
+
 
 
 const drawerWidth = 240;
@@ -106,15 +114,22 @@ const useStyles = makeStyles((theme) => ({
 export default function Dashboard() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
+  const [error, setError]= useState("");
+  const  currentUser  = useAuth();
+  console.log("User In Dashboard is");
   const handleDrawerOpen = () => {
     setOpen(true);
   };
   const handleDrawerClose = () => {
     setOpen(false);
   };
+  function handleLogout () {
+
+  }
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
   return (
+    <>
     <div className={classes.root}>
       <CssBaseline />
       <AppBar position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>
@@ -129,8 +144,10 @@ export default function Dashboard() {
             <MenuIcon />
           </IconButton>
           <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
-           Student Dashboard
+           Student Dashboard 
+           {currentUser && currentUser.email}
           </Typography>
+          
           <IconButton color="inherit">
             <Badge badgeContent={4} color="secondary">
               <NotificationsIcon />
@@ -151,7 +168,15 @@ export default function Dashboard() {
           </IconButton>
         </div>
         <Divider />
-        <List>{mainListItems}</List>
+        <List>
+        {/* {currentUser.email}  */}
+        <strong>Email: </strong> {currentUser.email}
+        {mainListItems}    <ListItem onClick={handleLogout}>
+      <ListItemIcon>
+        <BarChartIcon />
+      </ListItemIcon>
+      <ListItemText primary="Logout" />
+    </ListItem></List>
         <Divider />
       </Drawer>
       <main className={classes.content}>
@@ -180,5 +205,6 @@ export default function Dashboard() {
         </Container>
       </main>
     </div>
+    </>
   );
 }

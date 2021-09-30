@@ -13,7 +13,7 @@ import FacultyDashboard from './components/faculty dashboard/dashboard';
 import SignUp from './components/login/signUp';
 import { AuthProvider } from './context/AuthContext';
 import { BrowserRouter as Router } from 'react-router-dom';
-
+// import  DurraDashboard  from './dashboard'; 
 
 
 
@@ -27,6 +27,7 @@ return (<div >
   <Route path = '/faculty-login' component = {FacultyLogin}/>
   <Route path = '/dashboard' component = {AdminDashboard}/>
   <Route path = '/student-dashboard' component = {StudentDashboard}/>
+  {/* <Route path = '/student-dashboard' component = {DurraDashboard}/> */}
 
   {/* <Route path = '/student-dashboard' component = {StudentDashboard}/> */}
   <Route path = '/faculty-dashboard' component = {FacultyDashboard}>
