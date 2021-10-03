@@ -40,6 +40,8 @@ export const mainListItems = (
 
   </Dropdown.Toggle>
   <Dropdown.Menu>
+  {/* <Link style={{ color: 'black', textDecoration:'none' }} to= '/register-courses'>Reports</Link> */}
+
     <Dropdown.Item href="#/action-1">Registered Courses</Dropdown.Item>
     <Dropdown.Item href="#/action-2">Register for Classes</Dropdown.Item>
     <Dropdown.Item href="#/action-3">Drop Classes</Dropdown.Item>

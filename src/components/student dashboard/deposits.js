@@ -26,9 +26,9 @@ export default function Deposits() {
         on 15 March, 2021
       </Typography>
       <div>
-        <Link color="primary" href="#" onClick={preventDefault}>
+        {/* <Link color="primary" href="#" onClick={preventDefault}>
           View Courses
-        </Link>
+        </Link> */}
       </div>
     </React.Fragment>
   );
