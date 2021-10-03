@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -27,6 +27,7 @@ import { mainListItems } from './listItems';
 import Chart from './charts';
 import Deposits from './deposits';
 import Orders from './orders';
+import {db} from '../../firebase'
 
 
 
@@ -112,9 +113,46 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Dashboard() {
+
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
   const [error, setError]= useState("");
+  const [courses , setCourses] = useState([]);
+
+
+
+  useEffect(() =>{
+    const fetchCourses = async()=>{
+      const response = db.collection('courses');
+      const data  = await response.get();
+      data.docs.forEach(item=>{
+        setCourses([...courses, item.data()])
+      })
+    };
+  })
+
+
+
+  // useEffect(() => {
+  //   let arr = [];
+  //  async function getData(){
+  //   await db.collection("courses")
+  //   .get()
+  //     .then((querySnapshot) => {
+  //       querySnapshot.forEach((doc) => {
+  //         console.log(doc.data());
+  //   arr.push(doc.data())
+  //       });
+  //        console.log(arr)
+  //     });
+      
+  //   }
+
+  //   getData();
+  //    setCourses(arr)
+      
+  // }, []);
+
   const  currentUser  = useAuth();
   console.log("User In Dashboard is");
   const handleDrawerOpen = () => {
@@ -145,7 +183,7 @@ export default function Dashboard() {
           </IconButton>
           <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
            Student Dashboard 
-           {currentUser && currentUser.email}
+           {/* {currentUser && currentUser.email} */}
           </Typography>
           
           <IconButton color="inherit">
@@ -169,8 +207,28 @@ export default function Dashboard() {
         </div>
         <Divider />
         <List>
+        <div className="App">
+          
+      {
+        courses && courses.map(courses=>{
+          return(
+            <div className="blog-container">
+              <h4>{courses.title}</h4>
+              <p>{courses.code}</p>
+            </div>
+          )
+        })
+      }
+    </div>
+        {/* {
+          
+                  courses.map((c) => {
+                    <p>{c.title}</p>
+                  })
+             } */}
         {/* {currentUser.email}  */}
-        <strong>Email: </strong> {currentUser.email}
+        {/* <strong>Email: </strong> {currentUser.email} */}
+ 
         {mainListItems}    <ListItem onClick={handleLogout}>
       <ListItemIcon>
         <BarChartIcon />
@@ -183,6 +241,7 @@ export default function Dashboard() {
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
           <Grid container spacing={3}>
+          
             {/* Chart */}
             <Grid item xs={12} md={8} lg={9}>
               <Paper className={fixedHeightPaper}>
@@ -201,6 +260,8 @@ export default function Dashboard() {
                 <Orders />
               </Paper>
             </Grid>
+
+               
           </Grid>
         </Container>
       </main>
