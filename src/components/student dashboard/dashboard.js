@@ -121,7 +121,7 @@ export default function Dashboard() {
 
 
 
-  useEffect(() =>{
+  useEffect(() =>{  
     const fetchCourses = async()=>{
       const response = db.collection('courses');
       const data  = await response.get();

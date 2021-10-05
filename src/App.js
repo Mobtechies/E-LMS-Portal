@@ -14,6 +14,7 @@ import SignUp from './components/login/signUp';
 import { AuthProvider } from './context/AuthContext';
 import { BrowserRouter as Router } from 'react-router-dom';
 import RegisterCourses from './components/student dashboard/registerCourses';
+import VideoCall from './components/student dashboard/video-call'
 
 // import  DurraDashboard  from './dashboard'; 
 
@@ -21,11 +22,12 @@ import RegisterCourses from './components/student dashboard/registerCourses';
 
 
 const App = () => {
-return (<div >
+  return (<div >
   <Switch>
+  <Route exact path = '/' component = {VideoCall}/>
   
   <Route path = '/report' component = {Report}/>
-  <Route exact path = '/' component = {HomeLogin}/>
+  {/* <Route exact path = '/' component = {HomeLogin}/> */}
   <Route path = '/adminlogin' component = {AdminLogin}/>
   <Route path = '/faculty-login' component = {FacultyLogin}/>
   <Route path = '/dashboard' component = {AdminDashboard}/>
