@@ -14,7 +14,7 @@ import SignUp from './components/login/signUp';
 import { AuthProvider } from './context/AuthContext';
 import { BrowserRouter as Router } from 'react-router-dom';
 import RegisterCourses from './components/student dashboard/registerCourses';
-import VideoCall from './components/student dashboard/video-call'
+import VideoCall from './components/student dashboard/VideoApp'
 
 // import  DurraDashboard  from './dashboard'; 
 
