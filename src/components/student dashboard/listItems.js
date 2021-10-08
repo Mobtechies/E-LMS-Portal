@@ -64,11 +64,11 @@ export const mainListItems = (
 				</Dropdown.Toggle>
 				<Dropdown.Menu>
 					<Link style={{ color: "black", textDecoration: "none" }} to="/video-call">
-						Add Complaint
+						Join Class
 					</Link>
 
 					<Link style={{ color: "black", textDecoration: "none" }} to="/video-call">
-						View Complaint
+						Registered Complaint
 					</Link>
 				</Dropdown.Menu>
 			</Dropdown>
