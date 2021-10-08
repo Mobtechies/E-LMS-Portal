@@ -64,7 +64,7 @@ const ComplaintMenu = () => {
 			<div className="w-full">
 				<div className="p-10">
 					<div className="mb-8">
-						<h1 className="font-bold text-2xl text-gray-700">Add Complaint</h1>
+						<h1 className="font-bold text-2xl  text-gray-700 ">Add Complaint</h1>
 					</div>
 					<form className="w-1/2 mx-auto relative" onSubmit={submit}>
 						<div className="mb-6">

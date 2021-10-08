@@ -29,10 +29,10 @@ const App = () => {
   
   return (<div>
     <Route path = '/video-call' component = {VideoCall}/>
-    <Route exact path = '/' component = {Complaintc}/>
+    {/* <Route exact path = '/' component = {Complaintc}/> */}
   <Switch>
   
-  <Route  path = '/report' component = {Report}/>
+  <Route  path = '/' component = {Report}/>
   {/* <Route exact path = '/' component = {HomeLogin}/> */}
   <Route path = '/adminlogin' component = {AdminLogin}/>
   <Route path = '/faculty-login' component = {FacultyLogin}/>
