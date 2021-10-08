@@ -35,12 +35,12 @@ export const mainListItems = (
       </ListItemIcon>
       <Dropdown>
   <Dropdown.Toggle variant="white" id="dropdown-basic">
-  <Link style={{ color: 'black', textDecoration:'none' }} >Courses</Link>
+  {/* <Link style={{ color: 'black', textDecoration:'none' }} >Courses</Link> */}
 
 
   </Dropdown.Toggle>
   <Dropdown.Menu>
-  {/* <Link style={{ color: 'black', textDecoration:'none' }} to= '/register-courses'>Reports</Link> */}
+  <Link style={{ color: 'black', textDecoration:'none' }} to= '/video-call'>Join Class</Link>
 
     <Dropdown.Item href="#/action-1">Registered Courses</Dropdown.Item>
     <Dropdown.Item href="#/action-2">Register for Classes</Dropdown.Item>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from '@material-ui/core/Link';
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -7,6 +7,8 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Title from './title';
+import {db} from "../../firebase"
+import { AccessTimeSharp } from '@material-ui/icons';
 
 // Generate Order Data
 function createData(id, date, name, shipTo, paymentMethod, amount) {
@@ -33,6 +35,37 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Orders() {
   const classes = useStyles();
+  const [complaint , setComplaint]  = useState([{
+    id: [] , 
+    data: []
+  }]);
+
+  useEffect(async () => {
+
+     await db.collection("complaints").get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          // doc.data() is never undefined for query doc snapshots
+          // console.log( doc.data());
+          setComplaint([{...complaint,  id : doc.id, data: doc.data()}])
+        });
+      })
+      .catch((error) => {
+        console.log("Error getting documents: ", error);
+      });
+
+      
+    // console.log(complaint)
+  } , [])
+
+  const accept = (id) => {
+    db.collection("complaints").doc(id).update({status : "approved"})
+  }
+
+  const decline = (id) => {
+    db.collection("complaints").doc(id).update({status : "decline"})
+  }
+
   return (
     <React.Fragment>
       <Title>Recent Data</Title>
@@ -57,7 +90,25 @@ export default function Orders() {
             </TableRow>
           ))}
         </TableBody>
+
       </Table>
+
+
+      <div>
+          {complaint && complaint.map((data) => {
+            console.log(data);
+            return (
+            <div key={data.id}>
+              <p>{data.data.title}</p>
+              <p>{data.data.category}</p>
+              <p>{data.data.description}</p>
+              <p>{data.data.status}</p>
+              <button onClick={() => accept(data.id)}>Accept</button>
+              <button onClick={() => decline(data.id)}>Decline</button>
+            </div>
+            )
+})}
+        </div>
       <div className={classes.seeMore}>
         {/* <Link color="primary" href="#" onClick={preventDefault}>
           See more Data
