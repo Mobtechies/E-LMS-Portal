@@ -1,83 +1,84 @@
-import React, { useEffect, useState } from 'react';
-import {db} from "../../firebase"
-
+import React, { useEffect, useState } from "react";
+import { db } from "../../firebase";
 
 const Abc = () => {
-    const [complaint , setComplaint]  = useState([{}]);
-    let map = new Object();
-    
+	const [complaint, setComplaint] = useState([]);
+	const [reload, setReload] = useState(true);
 
-    //   const fetchBlogs=async()=>{
-    //     const response=db.collection('complaints');
-    //     const data=await response.get();
-    //     data.docs.forEach(item=>{
-    //     //  setBlogs([...blogs,item.data()])
-    //     setComplaint([...complaint , item.data()])
-    //     })
-    //   }
-    //   useEffect(() => {
-    //     fetchBlogs();
-    //   }, [])
+	useEffect(async () => {
+		let arr = [];
+		await db
+			.collection("complaints")
+			.get()
+			.then((querySnapshot) => {
+				querySnapshot.forEach((doc) => {
+					arr.push({ id: doc.id, data: doc.data() });
+				});
+			});
+		console.log(arr);
+		console.log(complaint);
+		setComplaint(arr);
+	}, [reload]);
 
-    //   const [complaint , setComplaint]  = useState([
-    //   ]);
-    
-      useEffect(() => {
-        // fetchBlogs()
-        let arr = [];
-        // let id = [];
+	const accept = async (id) => {
+		await db.collection("complaints").doc(id).update({ status: "approved" });
+		setReload(!reload);
+	};
 
-         db.collection("complaints").get()
-          .then((querySnapshot) => {
-            querySnapshot.forEach((doc) => {
-              // doc.data() is never undefined for query doc snapshots
-              console.log("1111"+ doc.data());
-            //   setComplaint([...complaint , doc.data()])
-              arr.push(doc.data());
-            //   id.push(doc.id);
-            });
-            setComplaint([complaint,arr ])
-            console.log('compaint = '+complaint);
-      
-        })
-        // .catch((error) => {
-        //     console.log("Error getting documents: ", error);
-        // });
-        // complaint = arr;
+	const decline = async (id) => {
+		await db.collection("complaints").doc(id).update({ status: "decline" });
+		setReload(!reload);
+	};
 
-     
-        } , []);
-      
-    
-      const accept = (id) => {
-        db.collection("complaints").doc(id).update({status : "approved"})
-      }
-    
-      const decline = (id) => {
-        db.collection("complaints").doc(id).update({status : "decline"})
-      }
+	return (
+		<div className="my-16">
+			{complaint &&
+				complaint.map((data, index) => {
+					// console.log(data);
+					return (
+						<div key={index} className="flex items-center justify-center">
+							<div className="w-full md:w-1/2 lg:w-2/3 border shadow-mainShadow border-gray-200 p-4 mb-4 rounded-lg hover:shadow-lg">
+								<div className="mt-2">
+									{/* Title */}
+									<p className="text-base font-medium pb-2 text-gray-800">
+										<span className="font-semibold">Title : </span>
+										{data.data.title}
+									</p>
+									{/* Category */}
+									<p className="text-base font-medium pb-2 text-gray-800">
+										<span className="font-semibold">Category : </span>
+										{data.data.category}
+									</p>
+									{/* Area */}
+									<p className="text-base font-medium pb-2 text-gray-800">
+										<span className="font-semibold">Description : </span>
+										{data.data.description}
+									</p>
+									<p className="break-all text-base font-medium pb-0 text-gray-800">
+										<span className="font-semibold">status : </span>
+										{data.data.status}
+									</p>
+								</div>
+								<div className="flex ">
+									<button
+										className="w-28 h-12 bg-blue-600"
+										onClick={() => accept(data.id)}
+									>
+										Accept
+									</button>
+									<button
+										className="w-28 h-12 bg-red-600"
+										onClick={() => decline(data.id)}
+									>
+										Decline
+									</button>
+								</div>
+							</div>
+						</div>
+					);
+				})}
+		</div>
+	);
+};
 
-    return (
-        <div>
-          {complaint && complaint.map((data, index) => {
-            console.log('CURRENT INDEX = '+index);
-         map = data[index];
-            console.log("TITLE FOR "+index);
-          
-            return(
-            <div key={index}>
-              <p>{map.title}</p>
-              <p>{map.category}</p>
-              <p>{map.description}</p>
-              <p>{map.status}</p>
-              {/* <button onClick={() => accept(data.id)}>Accept</button>
-              <button onClick={() => decline(data.id)}>Decline</button> */}
-            </div>
-            )
-        
-})}
-        </div>
-    )
-}
-
-export default Abc
+export default Abc;
