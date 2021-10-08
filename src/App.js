@@ -17,6 +17,7 @@ import RegisterCourses from './components/student dashboard/registerCourses';
 import VideoCall from './components/student dashboard/VideoApp'
 import "./video.css";
 import Complaintc from "./components/admin dashboard/Complaint"
+import Stripe from './mainFileStripe'
 
 
 
@@ -29,11 +30,12 @@ const App = () => {
   
   return (<div>
     <Route path = '/video-call' component = {VideoCall}/>
+    <Route path = '/stripe' component = {Stripe}/>
     {/* <Route exact path = '/' component = {Complaintc}/> */}
   <Switch>
   
-  <Route  path = '/' component = {Report}/>
-  {/* <Route exact path = '/' component = {HomeLogin}/> */}
+  <Route  path = '/report' component = {Report}/>
+  <Route exact path = '/' component = {HomeLogin}/>
   <Route path = '/adminlogin' component = {AdminLogin}/>
   <Route path = '/faculty-login' component = {FacultyLogin}/>
   <Route path = '/dashboard' component = {AdminDashboard}/>

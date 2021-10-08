@@ -210,14 +210,14 @@ export default function Dashboard() {
         <div className="App">
           
       {
-        courses && courses.map(courses=>{
-          return(
-            <div className="blog-container">
-              <h4>{courses.title}</h4>
-              <p>{courses.code}</p>
-            </div>
-          )
-        })
+        // courses && courses.map(courses=>{
+        //   return(
+        //     <div className="blog-container">
+        //       <h4>{courses.title}</h4>
+        //       <p>{courses.code}</p>
+        //     </div>
+        //   )
+        // })
       }
     </div>
         {/* {

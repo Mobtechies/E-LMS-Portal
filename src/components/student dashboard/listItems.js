@@ -35,7 +35,7 @@ export const mainListItems = (
       </ListItemIcon>
       <Dropdown>
   <Dropdown.Toggle variant="white" id="dropdown-basic">
-  {/* <Link style={{ color: 'black', textDecoration:'none' }} >Courses</Link> */}
+  <Link style={{ color: 'black', textDecoration:'none' }} >Courses</Link>
 
 
   </Dropdown.Toggle>
@@ -55,7 +55,9 @@ export const mainListItems = (
       <ListItemIcon>
         <BarChartIcon />
       </ListItemIcon>
-      <ListItemText primary="Reports" />
+      <Link style={{ color: 'black', textDecoration:'none' }} to= '/stripe'>Payments</Link>
+
+
     </ListItem>
     <ListItem button>
       <ListItemIcon>
