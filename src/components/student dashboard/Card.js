@@ -3,7 +3,6 @@ import { db } from "../../firebase";
 
 const Abc = () => {
 	const [complaint, setComplaint] = useState([]);
-	const [reload, setReload] = useState(true);
 
 	useEffect(async () => {
 		let arr = [];
@@ -18,17 +17,7 @@ const Abc = () => {
 		console.log(arr);
 		console.log(complaint);
 		setComplaint(arr);
-	}, [reload]);
-
-	const accept = async (id) => {
-		await db.collection("complaints").doc(id).update({ status: "approved" });
-		setReload(!reload);
-	};
-
-	const decline = async (id) => {
-		await db.collection("complaints").doc(id).update({ status: "decline" });
-		setReload(!reload);
-	};
+	}, []);
 
 	return (
 		<div className="my-16">
@@ -58,20 +47,6 @@ const Abc = () => {
 										<span className="font-semibold">status : </span>
 										{data.data.status}
 									</p>
-								</div>
-								<div className="flex ">
-									<button
-										className="w-28 h-12 bg-blue-600"
-										onClick={() => accept(data.id)}
-									>
-										Accept
-									</button>
-									<button
-										className="w-28 h-12 bg-red-600"
-										onClick={() => decline(data.id)}
-									>
-										Decline
-									</button>
 								</div>
 							</div>
 						</div>
