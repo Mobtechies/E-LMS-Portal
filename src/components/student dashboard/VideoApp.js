@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { Button } from "@material-ui/core";
-import VideoCall from "./VideoCall"
+import VideoCall from "./VideoCall";
+import "./controls.js";
+
+
 
 
 function VideoApp() {

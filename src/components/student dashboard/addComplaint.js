@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import {db} from "../../firebase"
-import { useAuth } from '../../context/AuthContext'
 
 const ComplaintMenu = () => {
 	const [complaint, setComplaint] = useState({
@@ -11,8 +9,6 @@ const ComplaintMenu = () => {
 	const { complaintTitle, category, description } = complaint;
 	const [titleLength, setTitleLength] = useState(0);
     const [show , setShow] = useState("")
-    // const {  currentUser } = useAuth()
-    // console.log(currentUser)
 
 	const categories = [
 		"Water",
@@ -36,20 +32,14 @@ const ComplaintMenu = () => {
 	console.log(category);
 
 	const submit = (e) => {
-		console.log(complaintTitle,  category, description);
+		console.log(complaintTitle, sector, category, description);
 		e.preventDefault();
+		setLoading(true);
 		if (!complaintTitle && !category && !description) {
 			console.log("Fill all fields");
 		} else {
-			db.collection("complaints").doc((Math.random().toString(32))).set({
-        title: complaintTitle,
-        category: category,
-        description: description,
-        status: "pending",
-        // email: currentUser.email,
-      })
+			
 		}
-    setComplaint({...complaint , complaintTitle: "", category: "" , description: ""})
 	};
 
 	return (
@@ -67,6 +57,7 @@ const ComplaintMenu = () => {
 						<h1 className="font-bold text-2xl text-gray-700">Add Complaint</h1>
 					</div>
 					<form className="w-1/2 mx-auto relative" onSubmit={submit}>
+						{msg ? msg : null}
 						<div className="mb-6">
 							<label className="font-semibold text-md mb-1 block">Complaint Title:</label>
 							<textarea
@@ -76,7 +67,7 @@ const ComplaintMenu = () => {
 								name="complaintTitle"
 								value={complaintTitle}
 								onChange={(e) => {
-									// console.log(e.target.value.length);
+									console.log(e.target.value.length);
 									setTitleLength(e.target.value.length);
 									if (e.target.value.length <= 80) {
 										setComplaint({ ...complaint, complaintTitle: e.target.value });

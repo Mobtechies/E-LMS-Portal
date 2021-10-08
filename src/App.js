@@ -15,6 +15,10 @@ import { AuthProvider } from './context/AuthContext';
 import { BrowserRouter as Router } from 'react-router-dom';
 import RegisterCourses from './components/student dashboard/registerCourses';
 import VideoCall from './components/student dashboard/VideoApp'
+import "./video.css";
+import Complaintc from "./components/admin dashboard/Complaint"
+
+
 
 // import  DurraDashboard  from './dashboard'; 
 
@@ -22,11 +26,13 @@ import VideoCall from './components/student dashboard/VideoApp'
 
 
 const App = () => {
-  return (<div >
-  <Switch>
-  <Route exact path = '/' component = {VideoCall}/>
   
-  <Route path = '/report' component = {Report}/>
+  return (<div>
+    <Route path = '/video-call' component = {VideoCall}/>
+    <Route exact path = '/' component = {Complaintc}/>
+  <Switch>
+  
+  <Route  path = '/report' component = {Report}/>
   {/* <Route exact path = '/' component = {HomeLogin}/> */}
   <Route path = '/adminlogin' component = {AdminLogin}/>
   <Route path = '/faculty-login' component = {FacultyLogin}/>
@@ -51,7 +57,10 @@ const App = () => {
 
   </AuthProvider>
   </Switch>
-</div>)
+  </div>
+
+
+  ) 
 };
-export default App 
+export default App; 
 

@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react'
 import { channelName, config, useClient, useMicrophoneAndCameraTracks } from "../../settings.js";
 import { Grid } from "@material-ui/core";
-import Video from "./video";
 import Controls from "./controls";
+import Video from "./video";
+
+
 
 export default function VideoCall(props) {
   const { setInCall } = props;
