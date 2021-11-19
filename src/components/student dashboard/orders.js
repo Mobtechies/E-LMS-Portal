@@ -68,15 +68,13 @@ export default function Orders() {
 
 	return (
 		<React.Fragment>
-			<Title>Recent Data</Title>
-			<Table size="small">
+			<Title>Register Your Courses</Title>
+			<Table size="small" >
 				<TableHead>
 					<TableRow>
-						<TableCell>Date</TableCell>
-						<TableCell>Teacher Name</TableCell>
-						<TableCell>From</TableCell>
-						<TableCell>Contact Mail</TableCell>
-						<TableCell align="right">Course</TableCell>
+						<TableCell>Code</TableCell>
+						<TableCell>Name</TableCell>
+						<TableCell align="center">Regsiter Course</TableCell>
 					</TableRow>
 				</TableHead>
 				<TableBody>
@@ -87,8 +85,8 @@ export default function Orders() {
 							<TableCell>{course.data.title}</TableCell>
 							<TableCell>
 								{register ? (
-									<button
-										className="hover:bg-blue-700"
+									<button 
+										className="registerbutton1"
 										onClick={() => {
 											// isRegister(false);
 											registerCourse(course.id, course.data.title, course.data.code);

@@ -36,7 +36,7 @@ export default function SignUp() {
                   <h2 className="text-center mb-4">Student Sign Up</h2>
                   
                   {error && <Alert variant="danger">{error}</Alert>}
-                  {currentUser && currentUser.email}
+                  {/* {currentUser && currentUser.email} */}
                   <Form onSubmit={handleSubmit}>
                       <Form.Group id="email">
                       <Form.Label>Email</Form.Label>

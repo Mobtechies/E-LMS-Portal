@@ -11,6 +11,7 @@ const ComplaintMenu = () => {
 	const { complaintTitle, category, description } = complaint;
 	const [titleLength, setTitleLength] = useState(0);
     const [show , setShow] = useState("")
+    const [msg , setMsg] = useState("")
     // const {  currentUser } = useAuth()
     // console.log(currentUser)
 
@@ -38,8 +39,9 @@ const ComplaintMenu = () => {
 	const submit = (e) => {
 		console.log(complaintTitle,  category, description);
 		e.preventDefault();
-		if (!complaintTitle && !category && !description) {
+		if (!complaintTitle || !category || !description) {
 			console.log("Fill all fields");
+			setMsg("Fill all fields")
 		} else {
 			db.collection("complaints").doc((Math.random().toString(32))).set({
         title: complaintTitle,
@@ -47,10 +49,12 @@ const ComplaintMenu = () => {
         description: description,
         status: "pending",
         // email: currentUser.email,
-      })
-		}
-    setComplaint({...complaint , complaintTitle: "", category: "" , description: ""})
+      });
+	  setMsg("");
+	  setComplaint({...complaint , complaintTitle: "", category: "" , description: ""})
 	};
+		}
+    
 
 	return (
 		<div
@@ -66,6 +70,7 @@ const ComplaintMenu = () => {
 					<div className="mb-8">
 						<h1 className="font-bold text-2xl  text-gray-700 ">Add Complaint</h1>
 					</div>
+					{msg ? <p style={{color: "red", width: "100%", textAlign: "center"}}>{msg}</p> : null}
 					<form className="w-1/2 mx-auto relative" onSubmit={submit}>
 						<div className="mb-6">
 							<label className="font-semibold text-md mb-1 block">Complaint Title:</label>

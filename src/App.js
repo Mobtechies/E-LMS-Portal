@@ -28,7 +28,7 @@ const App = () => {
 		<div>
 			<Route path="/video-call" component={VideoCall} />
 			<Route path="/stripe" component={Stripe} />
-			{/* <Route exact path="/" component={Complaintc} /> */}
+			<Route exact path="/comp" component={Complaintc} />
 			<Switch>
 				<Route path="/report" component={Report} />
 				<Route exact path="/" component={HomeLogin} />

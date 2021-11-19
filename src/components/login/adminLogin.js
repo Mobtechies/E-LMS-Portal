@@ -1,4 +1,4 @@
-import React from 'react';
+import React , {useState, useEffect} from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -11,7 +11,9 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Background from './images/adminbackground.jpg'
-import {Link} from 'react-router-dom';
+import {Link, useHistory} from 'react-router-dom';
+import {db} from "../../firebase"
+
  
 
 
@@ -49,6 +51,31 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignInSide() {
   const classes = useStyles();
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
+  const [msg, setMsg] = useState("")
+
+  let history = useHistory();
+
+  // useEffect(() => {
+    async function getUser(e){
+      e.preventDefault();
+     await db.collection("admin").
+      get().then(querySnapshot => {
+        querySnapshot.forEach(doc => {
+          console.log(doc.data().password)
+          console.log(username , password)
+          if(doc.data().userName === username && doc.data().password === password){
+            history.push("/dashboard")
+          }else{
+            setMsg("Wrong credentails")
+            history.push("/adminlogin");
+          }
+        })
+      }).catch(err => {
+        console.log("not login")
+      })
+    }
   
   return (
     <Grid container component="main" className={classes.root}>
@@ -62,6 +89,7 @@ export default function SignInSide() {
           <Typography component="h1" variant="h5">
             Admin Sign in
           </Typography>
+          {msg ? msg : null}
           <form className={classes.form} noValidate >
             <TextField
               variant="outlined"
@@ -73,6 +101,8 @@ export default function SignInSide() {
               name="userName"
               autoComplete="uerName"
               autoFocus
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
               
             />
             <TextField
@@ -85,6 +115,8 @@ export default function SignInSide() {
               type="password"
               id="password"
               autoComplete="current-password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
@@ -95,8 +127,11 @@ export default function SignInSide() {
               fullWidth
               variant="contained"
               color="primary"
+              onClick={getUser}
+
             >
-              <Link style={{ color: '#FFF', textDecoration:'none'}}  to='/dashboard'>Sign In</Link>
+              Sign In
+              {/* <Link style={{ color: '#FFF', textDecoration:'none'}}  to='/dashboard'>Sign In</Link> */}
               
             </Button>
             <Grid container>

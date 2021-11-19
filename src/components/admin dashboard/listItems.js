@@ -34,7 +34,8 @@ export const mainListItems = (
       <ListItemIcon>
         <BarChartIcon />
       </ListItemIcon>
-      <ListItemText primary="Reports" />
+     
+      <Link style={{ color: 'black', textDecoration:'none' }} to= '/comp'>Reports</Link>
     </ListItem>
     <ListItem button>
       <ListItemIcon>

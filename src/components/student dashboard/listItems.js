@@ -29,22 +29,8 @@ export const mainListItems = (
 			<ListItemIcon>
 				<PeopleIcon />
 			</ListItemIcon>
-			<Dropdown>
-				<Dropdown.Toggle variant="white" id="dropdown-basic">
-					<Link style={{ color: "black", textDecoration: "none" }}>Courses</Link>
-				</Dropdown.Toggle>
-				<Dropdown.Menu>
-					<Link style={{ color: "black", textDecoration: "none" }} to="/video-call">
-						Join Class
-					</Link>
+					<Link style={{ color: "black", textDecoration: "none" }} to="/register-courses">Courses</Link>
 
-					<Dropdown.Item href="#/action-1">Registered Courses</Dropdown.Item>
-					<Dropdown.Item href="#/action-2">Register for Classes</Dropdown.Item>
-					<Dropdown.Item href="#/action-3">Drop Classes</Dropdown.Item>
-					<Dropdown.Item href="#/action-3">Assignments</Dropdown.Item>
-					<Dropdown.Item href="#/action-3">Transcript</Dropdown.Item>
-				</Dropdown.Menu>
-			</Dropdown>
 		</ListItem>
 		<ListItem button>
 			<ListItemIcon>
@@ -58,22 +44,18 @@ export const mainListItems = (
 			<ListItemIcon>
 				<LayersIcon />
 			</ListItemIcon>
-			<Dropdown>
-				<Dropdown.Toggle variant="white" id="dropdown-basic">
-					<Link style={{ color: "black", textDecoration: "none" }}>Courses</Link>
-				</Dropdown.Toggle>
-				<Dropdown.Menu>
-					<Link style={{ color: "black", textDecoration: "none" }} to="/video-call">
-						Join Class
-					</Link>
 
-					<Link style={{ color: "black", textDecoration: "none" }} to="/video-call">
-						Registered Complaint
-					</Link>
-				</Dropdown.Menu>
-			</Dropdown>
 			<Link style={{ color: "black", textDecoration: "none" }} to="/report">
 				Reports
+			</Link>
+		</ListItem>
+		<ListItem button>
+			<ListItemIcon>
+				<LayersIcon />
+			</ListItemIcon>
+
+			<Link style={{ color: "black", textDecoration: "none" }} to="/card">
+				View Reports
 			</Link>
 		</ListItem>
 
