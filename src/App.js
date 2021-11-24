@@ -1,63 +1,36 @@
 import React from "react";
-import { Switch, Route } from "react-router-dom";
-import { Container } from "react-bootstrap";
-import Report from "./components/login/basicForm";
-// import SignInSide from './components/login/signInSide';
-import HomeLogin from "./components/login/homeLogin";
-import AdminLogin from "./components/login/adminLogin";
-import StudentLogin from "./components/login/studentLogin";
-import FacultyLogin from "./components/login/facultyLogin";
-import AdminDashboard from "./components/admin dashboard/dashboard";
-import StudentDashboard from "./components/student dashboard/dashboard";
-import FacultyDashboard from "./components/faculty dashboard/dashboard";
-import SignUp from "./components/login/signUp";
-import { AuthProvider } from "./context/AuthContext";
-import { BrowserRouter as Router } from "react-router-dom";
-import RegisterCourses from "./components/student dashboard/registerCourses";
-import VideoCall from "./components/student dashboard/VideoApp";
-import "./video.css";
-import Complaintc from "./components/admin dashboard/Complaint";
-import Stripe from "./mainFileStripe";
-import Register from "./components/student dashboard/Register";
-import Card from "./components/student dashboard/Card";
+import { ThemeProvider, makeStyles } from "@material-ui/styles";
+import "react-notifications/lib/notifications.css";
+import { NotificationContainer } from "react-notifications";
+import { Provider } from "react-redux";
+import { theme } from "./assets/styles/theme";
+import store from "./store";
+import AuthContextProvider from "./context/AuthContext";
+import AppRouting from "./components/routing/AppRouting";
 
-// import  DurraDashboard  from './dashboard';
+const useGlobalStyles = makeStyles({
+  "@global": {
+    body: {
+      backgroundColor: "#F9FAFC",
+    },
+  },
+});
+
+const AppThemeProvider = ({ children }) => {
+  useGlobalStyles();
+  return <ThemeProvider theme={theme}>{children}</ThemeProvider>;
+};
 
 const App = () => {
-	return (
-		<div>
-			<Route path="/video-call" component={VideoCall} />
-			<Route path="/stripe" component={Stripe} />
-			<Route exact path="/comp" component={Complaintc} />
-			<Switch>
-				<Route path="/report" component={Report} />
-				<Route exact path="/" component={HomeLogin} />
-				<Route path="/adminlogin" component={AdminLogin} />
-				<Route path="/faculty-login" component={FacultyLogin} />
-				<Route path="/dashboard" component={AdminDashboard} />
-				<Route path="/student-dashboard" component={StudentDashboard} />
-				{/* <Route exact path="/" component={StudentDashboard} /> */}
-				<Route path="/register-courses" component={RegisterCourses} />
-				<Route path="/register" component={Register} />
-				<Route path="/card" component={Card} />
-
-				{/* <Route path = '/student-dashboard' component = {DurraDashboard}/> */}
-
-				{/* <Route path = '/student-dashboard' component = {StudentDashboard}/> */}
-				<Route path="/faculty-dashboard" component={FacultyDashboard}></Route>
-				<AuthProvider>
-					<Container
-						className="d-flex align-items-center justify-content-center"
-						style={{ minHeight: "100vh" }}
-					>
-						<div className="w-100" style={{ maxWidth: "400px" }}>
-							<Route path="/signup" component={SignUp} />
-						</div>
-					</Container>
-					<Route exact path="/student-login" component={StudentLogin} />
-				</AuthProvider>
-			</Switch>
-		</div>
-	);
+  return (
+    <AppThemeProvider theme={theme}>
+      <Provider store={store}>
+        <NotificationContainer />
+        <AuthContextProvider>
+          <AppRouting />
+        </AuthContextProvider>
+      </Provider>
+    </AppThemeProvider>
+  );
 };
 export default App;
