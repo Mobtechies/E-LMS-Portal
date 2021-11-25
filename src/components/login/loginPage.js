@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { NotificationManager } from "react-notifications";
+import { useHistory } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { makeStyles } from "@material-ui/core/styles";
@@ -10,8 +12,9 @@ import {
   Radio,
   FormControlLabel,
 } from "@material-ui/core";
-import PrimaryButton from "../../common/controls/PrimaryButton";
-import TextField from "../../common/controls/InputField";
+import PrimaryButton from "../common/controls/PrimaryButton";
+import TextField from "../common/controls/InputField";
+import { useAuth } from "../../context/AuthContext";
 
 const useStyles = makeStyles((theme) => ({
   signInContainer: {
@@ -78,9 +81,25 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Login = () => {
+const Login = (props) => {
   const classes = useStyles();
   const [value, setValue] = useState("student");
+  const { login } = useAuth();
+  // useEffect(() => {
+  //   signup("adminLms@lms.com", "admin1234")
+  //     .then((res) => {
+  //       console.log(res);
+  //       props.saveData({
+  //         collection: "admin",
+  //         id: res.user.uid,
+  //         data: { email: "admin@lms.com" },
+  //       });
+  //     })
+  //     .catch((error) => {
+  //       NotificationManager.error(error.message);
+  //     });
+  // }, []);
+  const history = useHistory();
 
   const handleChange = (event) => {
     setValue(event.target.value);
@@ -98,11 +117,15 @@ const Login = () => {
       password: Yup.string().max(255).required("Password is required"),
     }),
     onSubmit: (values, { setSubmitting }) => {
-      setTimeout(() => {
-        alert(JSON.stringify(values, null, 2));
-        setSubmitting(false);
-      }, 400);
-      //router.push("/");
+      login(values.email, values.password)
+        .then((res) => {
+          props.signInUser({ user: res.user, selectedValue: value, history });
+          setSubmitting(false);
+        })
+        .catch((error) => {
+          NotificationManager.error(error.message);
+          setSubmitting(false);
+        });
     },
   });
 

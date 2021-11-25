@@ -77,23 +77,23 @@ export default function Orders() {
     },
   ]);
 
-  useEffect(async () => {
-    await db
-      .collection("complaints")
-      .get()
-      .then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          // doc.data() is never undefined for query doc snapshots
-          // console.log( doc.data());
-          setComplaint([{ ...complaint, id: doc.id, data: doc.data() }]);
-        });
-      })
-      .catch((error) => {
-        console.log("Error getting documents: ", error);
-      });
+  // useEffect(async () => {
+  //   await db
+  //     .collection("complaints")
+  //     .get()
+  //     .then((querySnapshot) => {
+  //       querySnapshot.forEach((doc) => {
+  //         // doc.data() is never undefined for query doc snapshots
+  //         // console.log( doc.data());
+  //         setComplaint([{ ...complaint, id: doc.id, data: doc.data() }]);
+  //       });
+  //     })
+  //     .catch((error) => {
+  //       console.log("Error getting documents: ", error);
+  //     });
 
-    // console.log(complaint)
-  }, []);
+  //   // console.log(complaint)
+  // }, []);
 
   const accept = (id) => {
     db.collection("complaints").doc(id).update({ status: "approved" });

@@ -7,6 +7,7 @@ import { theme } from "./assets/styles/theme";
 import store from "./store";
 import AuthContextProvider from "./context/AuthContext";
 import AppRouting from "./components/routing/AppRouting";
+import "./video.css";
 
 const useGlobalStyles = makeStyles({
   "@global": {

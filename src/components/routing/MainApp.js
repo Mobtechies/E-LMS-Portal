@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { Redirect, Route, useLocation } from "react-router-dom";
 import RctDefaultLayout from "./DefaultLayout";
-import AppSignIn from "../pages/Login";
+import AppSignIn from "../../views/login";
 import { LocalStorage } from "../../constants/LocalStorage";
 
 const useQuery = () => {
@@ -15,15 +15,25 @@ const InitialPath = ({ component: Component, ...rest }) => (
 
 const MainApp = (props) => {
   const { location, match, user } = props;
+  // signup("admin@lms.com", "admin").then((res) => {
+  //   console.log(res);
+  // });
   const query = useQuery();
   if (localStorage.getItem(LocalStorage.TOKEN) == null) {
     if (location.pathname !== "/login") {
       return <Redirect to={"/login"} />;
     }
   } else if (location.pathname === "/") {
-    return <Redirect to={"/app/dashboard"} />;
+    console.log(LocalStorage.USER_TYPE);
+    if (localStorage.getItem(LocalStorage.USER_TYPE) === "admin") {
+      return <Redirect to={"admin-dashboard"} />;
+    } else if (localStorage.getItem(LocalStorage.USER_TYPE) === "student") {
+      return <Redirect to={"student-dashboard"} />;
+    } else if (localStorage.getItem(LocalStorage.USER_TYPE) === "faculty") {
+      return <Redirect to={"faculty-dashboard"} />;
+    }
   }
-  const defaultPath = `${match.url}app`;
+  const defaultPath = `${match.url}`;
   return (
     <>
       <InitialPath

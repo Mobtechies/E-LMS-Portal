@@ -1,3 +1,4 @@
+import { NotificationManager } from "react-notifications";
 import { SIGN_IN, SIGN_IN_SUCCESS, SIGN_IN_FAILURE } from "../types";
 
 const INIT_STATE = {
@@ -17,12 +18,14 @@ const SignIn = (state = INIT_STATE, action) => {
         loading: true,
       };
     case SIGN_IN_SUCCESS:
+      NotificationManager.success("Login Successfully");
       return {
         ...state,
         user: action.payload,
         loading: false,
       };
     case SIGN_IN_FAILURE:
+      NotificationManager.error(action.payload.message);
       return {
         ...state,
         error: action.payload,

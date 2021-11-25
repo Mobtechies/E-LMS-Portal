@@ -5,20 +5,20 @@ const Abc = () => {
   const [complaint, setComplaint] = useState([]);
   const [reload, setReload] = useState(true);
 
-  useEffect(async () => {
-    let arr = [];
-    await db
-      .collection("complaints")
-      .get()
-      .then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          arr.push({ id: doc.id, data: doc.data() });
-        });
-      });
-    console.log(arr);
-    console.log(complaint);
-    setComplaint(arr);
-  }, [reload]);
+  // useEffect(async () => {
+  //   let arr = [];
+  //   await db
+  //     .collection("complaints")
+  //     .get()
+  //     .then((querySnapshot) => {
+  //       querySnapshot.forEach((doc) => {
+  //         arr.push({ id: doc.id, data: doc.data() });
+  //       });
+  //     });
+  //   console.log(arr);
+  //   console.log(complaint);
+  //   setComplaint(arr);
+  // }, [reload]);
 
   const accept = async (id) => {
     await db.collection("complaints").doc(id).update({ status: "approved" });

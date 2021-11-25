@@ -12,7 +12,7 @@ const DefaultLayout = (props) => {
         <Route
           exact
           key={key}
-          path={`${match.url}/${route.path}`}
+          path={`/${route.path}`}
           component={route.component}
         />
       ))}
